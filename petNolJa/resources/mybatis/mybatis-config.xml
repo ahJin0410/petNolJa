@@ -17,6 +17,7 @@
 	<mappers>
 		<package name="com.semi.petNolJa.member"/>
 		<package name="com.semi.petNolJa.admin"/>
+		<package name="com.semi.petNolJa.common"/>
 	</mappers>
 	
 </configuration>

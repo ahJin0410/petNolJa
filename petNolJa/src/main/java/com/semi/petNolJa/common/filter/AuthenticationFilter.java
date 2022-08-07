@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.semi.petNolJa.admin.model.dto.EmployeeDTO;
+import com.semi.petNolJa.common.login.model.dto.AdminDTO;
 
 @WebFilter(urlPatterns = {})	// 메뉴 모두 만든 후 urlPattern 작성하기
 public class AuthenticationFilter implements Filter {
@@ -33,7 +33,7 @@ public class AuthenticationFilter implements Filter {
 		
 		/* 권한 확인 후 허용 된 url에만 접근 가능하도록 설정 */
 		HttpSession requestSession = hrequest.getSession();
-		EmployeeDTO loginMember = (EmployeeDTO) requestSession.getAttribute("loginMember");
+		AdminDTO loginMember = (AdminDTO) requestSession.getAttribute("loginMember");
 		
 		boolean isAuthorized = false;
 		if(loginMember != null) {

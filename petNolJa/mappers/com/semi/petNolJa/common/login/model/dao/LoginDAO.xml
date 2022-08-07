@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.semi.petNolJa.common.login.model.dao.LoginDAO">
+	<resultMap type="com.semi.petNolJa.common.login.model.dto.AdminDTO" id="empResultMap">
+		<id property="empId" column="EMP_ID"/>
+		<result property="empPwd" column="EMP_PWD"/>
+		<result property="empName" column="EMP_NAME"/>
+		<result property="empNo" column="EMP_NO"/>
+		<result property="empEmail" column="EMP_EMAIL"/>
+		<result property="empPhone" column="EMP_PHONE"/>
+		<result property="empSalary" column="EMP_SALARY"/>
+		<result property="empBonus" column="EMP_BONUS"/>
+		<result property="empHiredate" column="EMP_HIREDATE"/>
+		<result property="empLeavedate" column="EMP_LEAVEDATE"/>
+		<result property="empDropYn" column="EMP_DROP_YN"/>
+		<result property="deptCode" column="DEPT_CODE"/>
+		<result property="jobCode" column="JOB_CODE"/>
+	</resultMap>
+	
+	<resultMap type="com.semi.petNolJa.common.login.model.dto.MemberDTO" id="memberResultMap">
+		<id property="memberId" column="MEMBER_ID" />
+		<result property="memberPwd" column="MEMBER_PWD" />
+		<result property="memberName" column="MEMBER_NAME" />
+		<result property="memberBirth" column="MEMBER_BIRTH" />
+		<result property="memberPhone" column="MEMBER_PHONE" />
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberPoint" column="MEMBER_POINT" />
+		<result property="memberLeavedate" column="MEMBER_LEAVEDATE" />
+		<result property="memberDropYn" column="MEMBER_DROP_YN" />
+		<result property="gradeNo" column="GRADE_NO" />
+	</resultMap>
+	
+	<select id="selectEncryptedEmpPwd" parameterType="_int" resultType="string">
+		SELECT
+			   A.EMP_PWD
+		  FROM ADMIN A
+		 WHERE A.EMP_ID = #{id}
+	</select>
+	
+	<select id="selectLoginEmp" parameterType="hashmap" resultMap="empResultMap">
+		SELECT
+			   A.EMP_ID
+			 , A.EMP_NAME
+			 , A.DEPT_NO
+			 , A.JOB_NO
+		  FROM ADMIN A
+		 WHERE A.EMP_ID = #{id}
+		   AND A.EMP_DROP_YN = 'N'
+	</select>
+	
+	<insert id="registAdminLog" parameterType="hashmap">
+		INSERT
+		  INTO ADMIN_LOGIN_LOG A
+		(
+		  A.ADMIN_LOGIN_LOG_NO
+		, A.ADMIN_LOGIN_LOG_DATE
+		, A.ADMIN_LOGIN_LOG_IP
+		, A.EMP_ID
+		)
+		VALUES
+		(
+		  SEQ_ADMIN_LOGIN_LOG_NO.NEXTVAL
+		, SYSDATE
+		, #{ip}
+		, #{id}
+		)
+	</insert>
+	
+	<select id="selectEncryptedmemberPwd" parameterType="string" resultType="string">
+		SELECT
+			   A.MEMBER_PWD
+		  FROM MEMBER A
+		 WHERE A.MEMBER_ID = #{id}
+	</select>
+	
+	<select id="selectLoginMember" parameterType="hashmap" resultMap="memberResultMap">
+		SELECT
+			   A.MEMBER_ID
+			 , A.MEMBER_NAME
+			 , A.MEMBER_POINT
+			 , A.GRADE_NO
+		  FROM MEMBER A
+		 WHERE A.MEMBER_ID = #{id}
+	</select>
+	
+	<insert id="registMemLoginLog" parameterType="hashmap">
+		INSERT
+		  INTO MEMBER_LOGIN_LOG A
+		(
+		  A.MEMBER_LOGIN_LOG_NO
+		, A.MEMBER_LOGIN_LOG_DATE
+		, A.MEMBER_LOGIN_LOG_IP
+		, A.MEMBER_ID
+		)
+		VALUES
+		(
+		  SEQ_MEMBER_LOGIN_LOG_NO.NEXTVAL
+		, SYSDATE
+		, #{ip}
+		, #{id}
+		)
+	</insert>
+	
+</mapper>

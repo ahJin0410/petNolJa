@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>펫놀자</title>
 </head>
 <body>
-	하이 나는 인덱스에용
+	<!-- 고객 메인페이지 -->
+	<jsp:forward page="/WEB-INF/views/main/memberMain.jsp"/>
+	
+	<!-- 관리자 메인페이지 -->
+	<jsp:forward page="/WEB-INF/views/main/adminMain.jsp"/>
 </body>
 </html>
