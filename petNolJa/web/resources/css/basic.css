@@ -54,7 +54,7 @@ p {font-size: 18px;}
 input[type="checkbox"]{
 	zoom: 1.5; cursor: pointer;
 }
-input[type="text"], input[type="number"], input[type="password"]{
+input[type="text"], input[type="number"], input[type="password"], input[type="date"]{
     width: 270px;
     padding-left: 6px;
     border: none;
@@ -142,6 +142,21 @@ input[type="text"], input[type="number"], input[type="password"]{
         font-family:'Nanumsquare'      
         }
 
+.checkBtn{
+	background-color: rgba(233, 230, 226, 1);
+    width:80px;
+    height:30px;
+    border:none;
+    color:gray; 
+    font-size:13px;
+    cursor:pointer;
+    font-family:'Nanumsquare'    
+}
+
+.checkBtn:hover{
+	background-color: gray;
+    color:rgba(233, 230, 226, 1); 
+}
 
 select{height:30px;}
 input{height:30px;}
