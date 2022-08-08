@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,11 +32,15 @@
         <header>
             <div class="header_top">
                 <ul class="top_member_box">
-                    <li><a href="${pageContext.servletContext.contextPath}/common/login">로그인</a></li>
-                    <li><a href="#">로그아웃</a></li>
-                    <li><a href="#">호텔예약</a></li>
-                    <li><a href="${pageContext.servletContext.contextPath}/regist/agree">회원가입</a></li>
-                    <li><a href="#">마이페이지</a></li>
+                	<c:if test="${empty sessionScope.loginMember and empty sessionScope.loginEmp}">
+                    	<li><a href="${pageContext.servletContext.contextPath}/common/login">로그인</a></li>
+                    	<li><a href="${pageContext.servletContext.contextPath}/regist/agree">회원가입</a></li>
+                   	</c:if>
+                   	<c:if test="${!empty sessionScope.loginMember or !empty sessionScope.loginEmp}">
+                    	<li><a href="${pageContext.servletContext.contextPath}/common/logout">로그아웃</a></li>
+                    	<li><a href="#">호텔예약</a></li>
+                    	<li><a href="#">마이페이지</a></li>
+                   	</c:if>
                     <li><a href="#">고객센터</a></li>
                 </ul>
             </div>
@@ -51,8 +56,8 @@
                 
                 <div class="right_btn">
                     <ul>
-                        <li><a href="#">@@@님 환영합니다.</a></li>
-                        <li><a href="#">login</a></li>
+                        <li><a href="#">님 환영합니다.</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/common/login">login</a></li>
                     </ul>
                 </div>
                <div class="gnb">

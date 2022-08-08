@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,20 +29,20 @@
 	               <br>
 	               <br>
 	               <hr>
-	               <input type="checkbox" name="agree1" id="agree1" class="normal" required><label for="agree1" class="c1">펫놀자 회원약관 <b class="text-deco">(필수)</b></label>
+	               <input type="checkbox" name="1" id="agree1" class="normal" required><label for="agree1" class="c1">펫놀자 회원약관 <b class="text-deco">(필수)</b></label>
 	               <br>
-	               <input type="checkbox" name="agree2" id="agree2" class="normal" required><label for="agree2"  class="c1">개인정보의 수집·이용에 관한 사항 <b class="text-deco">(필수)</b></label>
+	               <input type="checkbox" name="2" id="agree2" class="normal" required><label for="agree2"  class="c1">개인정보의 수집·이용에 관한 사항 <b class="text-deco">(필수)</b></label>
 	               <br>
-	               <input type="checkbox" name="agree3" id="agree3" class="normal"><label for="agree3"  class="c1">개인정보 수집이용에 관한 사항 <b>(선택)</b></label>
+	               <input type="checkbox" name="3" id="agree3" class="normal"><label for="agree3"  class="c1">개인정보 수집이용에 관한 사항 <b>(선택)</b></label>
 	               <br>
 	               <div class="checksub1">
 	               <input type="checkbox" name="allAgree1" id="allAgree1"><label for="allAgree1"  class="c1">상품안내 및 마케팅 활용을 위한 개인정보 수집·이용에 관한 동의 <b>(선택)</b></label><br>
-	                  <input type="checkbox" name="sms1" id="sms1"><label for="sms1"> SMS</label>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="email1" id="email1"><label for="email1"> email</label>
+	                  <input type="checkbox" name="4" id="sms1"><label for="sms1"> SMS</label>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="5" id="email1"><label for="email1"> email</label>
 	               </div>
 	                  <br>
 	               <div class="checksub2">
 	                  <input type="checkbox" name="allAgree2" id="allAgree2"><label for="allAgree2"  class="c1">상품안내 및 마케팅 활용을 위한 개인정보 제3자 제공에 관한 동의 <b>(선택)</b></label><br>
-	                  <input type="checkbox" name="sms1" id="sms1"><label for="sms1"> SMS</label>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="email1" id="email1"><label for="email1"> email</label>
+	                  <input type="checkbox" name="6" id="sms1"><label for="sms1"> SMS</label>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="7" id="email1"><label for="email1"> email</label>
 	               </div>
 	               <div class="buttonDiv" align="center" style="margin-top: 60px;">
 	                 <button type="reset" id="leftBtn" onclick="location.href='${ pageContext.request.contextPath }/index.jsp'"><b>이전</b></button>&nbsp;&nbsp;&nbsp; <button type="button" id="button"><b>다음</b></button>
@@ -51,7 +52,9 @@
 	    </div>
     </div>
 	<jsp:include page="../../common/memberFooter.jsp"/>
+	
 <script>
+
      $("#button").click(function(){
 		if($("#agree1").is(":checked") && $("#agree2").is(":checked")){
 			$("#form").submit();
@@ -81,6 +84,7 @@
 	
 	    $("#allAgree").prop("checked", is_checked);
 	 });
+	
 </script>
 </body>
 </html>
