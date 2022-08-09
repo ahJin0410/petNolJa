@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.semi.petNolJa.member.regist.model.dto.TermsAgreeLogDTO;
 
-@WebServlet("/regist/agree")
+@WebServlet("/member/regist/agree")
 public class TermsOfServiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +34,8 @@ public class TermsOfServiceServlet extends HttpServlet {
 			}
 			agreeList.add(agree);
 		}
-		request.setAttribute("agreeList", agreeList);
+		Gson gson = new Gson();
+		request.setAttribute("agreeList", gson.toJson(agreeList));
 		request.getRequestDispatcher("/WEB-INF/views/member/regist/registFrom.jsp").forward(request, response);
 	}
 

@@ -41,15 +41,16 @@ public class CheckPhoneServlet extends HttpServlet {
 		params.put("text", "[PetNolJa] 인증번호: " + randomNumber + "\n인증번호를 입력해 주세요.");
 		params.put("app_version", "test app 1.2");
 		
-		try {
-			JSONObject sendObj = (JSONObject) sms.send(params);
+//		try {
+//			JSONObject sendObj = (JSONObject) sms.send(params);
+//			System.out.println(sendObj);
 			PrintWriter out = response.getWriter();
-			out.print(sendObj);
+			out.print(randomNumber);
 			out.flush();
 			out.close();
-		} catch (CoolsmsException e) {
-			e.printStackTrace();
-		}
+//		} catch (CoolsmsException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

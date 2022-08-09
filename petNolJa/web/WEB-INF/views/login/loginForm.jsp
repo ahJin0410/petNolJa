@@ -30,7 +30,7 @@
 		    <div class="registwrap" align="center">
 		        <table style="width: 90%; text-align: center;">
 		            <tr>
-		                <td width="30%"><a href="${pageContext.servletContext.contextPath}/regist/agree">회원가입</a></td>
+		                <td width="30%"><a href="${pageContext.servletContext.contextPath}/member/regist/agree">회원가입</a></td>
 		                <td>|</td>
 		                <td width="30%"><a href="#">아이디 찾기</a></td>
 		                <td>|</td>

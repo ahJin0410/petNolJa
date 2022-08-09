@@ -22,7 +22,7 @@
 	            </p>
 	        </div>
 	
-	        <form action="${pageContext.servletContext.contextPath}/regist/agree" method="post" id="form">
+	        <form action="${pageContext.servletContext.contextPath}/member/regist/agree" method="post" id="form">
 	            <div class="check" align="left">
 	               <br>
 	               <input type="checkbox" name="allAgree" id="allAgree"><label for="allAgree" class="allAgree" > 전체 동의하기</label>

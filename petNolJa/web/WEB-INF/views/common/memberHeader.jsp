@@ -34,7 +34,7 @@
                 <ul class="top_member_box">
                 	<c:if test="${empty sessionScope.loginMember and empty sessionScope.loginEmp}">
                     	<li><a href="${pageContext.servletContext.contextPath}/common/login">로그인</a></li>
-                    	<li><a href="${pageContext.servletContext.contextPath}/regist/agree">회원가입</a></li>
+                    	<li><a href="${pageContext.servletContext.contextPath}/member/regist/agree">회원가입</a></li>
                    	</c:if>
                    	<c:if test="${!empty sessionScope.loginMember or !empty sessionScope.loginEmp}">
                     	<li><a href="${pageContext.servletContext.contextPath}/common/logout">로그아웃</a></li>
