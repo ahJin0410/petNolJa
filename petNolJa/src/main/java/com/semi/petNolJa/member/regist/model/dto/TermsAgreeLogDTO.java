@@ -8,13 +8,13 @@ public class TermsAgreeLogDTO implements Serializable {
 	
 	private int termsNo;
 	private String memberId;
-	private char agreeYn;
+	private String agreeYn;
 	private java.sql.Date agreeDate;
 	
 	public TermsAgreeLogDTO() {
 	}
 
-	public TermsAgreeLogDTO(int termsNo, String memberId, char agreeYn, Date agreeDate) {
+	public TermsAgreeLogDTO(int termsNo, String memberId, String agreeYn, Date agreeDate) {
 		this.termsNo = termsNo;
 		this.memberId = memberId;
 		this.agreeYn = agreeYn;
@@ -37,11 +37,11 @@ public class TermsAgreeLogDTO implements Serializable {
 		this.memberId = memberId;
 	}
 
-	public char getAgreeYn() {
+	public String getAgreeYn() {
 		return agreeYn;
 	}
 
-	public void setAgreeYn(char agreeYn) {
+	public void setAgreeYn(String agreeYn) {
 		this.agreeYn = agreeYn;
 	}
 
@@ -62,5 +62,5 @@ public class TermsAgreeLogDTO implements Serializable {
 		return "TermsAgreeLogDTO [termsNo=" + termsNo + ", memberId=" + memberId + ", agreeYn=" + agreeYn
 				+ ", agreeDate=" + agreeDate + "]";
 	}
-	
+
 }

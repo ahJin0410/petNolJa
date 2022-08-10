@@ -72,40 +72,19 @@
                     </tr>
                     <tr><td></td></tr>
                 </table>
-                <p id="listP"><c:out value="${agreeList}"/></p>
                 <div align="center" style="margin-top: 60px;">
+                	<input type="text" name="termsNo" id="termsNo" style="display: none;">
+                	<input type="text" name="agreeYn" id="agreeYn" style="display: none;">
                     <button type="reset" id="leftBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/regist/agree'"><b>이전</b></button>&nbsp;&nbsp;&nbsp; <button type="submit" id="button"><b>다음</b></button>
                 </div>
             </form>
         </div>
 	</div>
-	<button id="test">test</button>
 	<input type="text" id="checkMemberId" style="display: none;">
 	<jsp:include page="../../common/memberFooter.jsp"/>
 
 <script>
-/* $("#test").click(function(){
-	alert($('#listP').html());
-	var data = ${agreeList};
-    var agreeList = new Array();
-
-    for(var i in data){
-        agreeList.push(data[i]);
-    }
-    
-    
-    $.ajax({
-        url: "${pageContext.servletContext.contextPath}/member/regist/info",
-        type: "get",
-        data: {agreeList:JSON.stringify(agreeList)},
-        success: function(){
-        },
-        error: function(error){
-            console.log(error);
-        }
-    });
-});
-	 */
+	
 	/* 유효성 검사 */
     $("#memberId").change(function(){
         $("#checkMemberId").val('1');
@@ -234,26 +213,21 @@
         	alert('핸드폰 인증을 진행해주세요.');
         	return false;
         }
-        /* 
-        var data = ${agreeList};
-        var agreeList = new Array();
+        
+        var memberId = $("#memberId").val();
+		var data =  ${agreeList};
+        var termsNo = new Array();
+        var agreeYn = new Array();
 
         for(var i in data){
-            agreeList.push(data[i]);
+        	termsNo.push(data[i].termsNo);
+        	agreeYn.push(data[i].agreeYn);
         }
-        alert(JSON.stringify(agreeList));
-        $.ajax({
-            url: "${pageContext.servletContext.contextPath}/member/regist/info",
-            type: "get",
-            data: {agreeList:JSON.stringify(agreeList)},
-            success: function(){
-                return true;
-            },
-            error: function(error){
-                console.log(error);
-            }
-        });
-         */
+        
+        $("#termsNo").val(termsNo);
+        $("#agreeYn").val(agreeYn);
+        
+        return true;
     }
 	
 </script>

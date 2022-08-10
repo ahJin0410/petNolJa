@@ -8,4 +8,50 @@
 		  FROM MEMBER A
 		 WHERE A.MEMBER_ID = #{checkId}
 	</select>
+	
+	<insert id="registMember" parameterType="com.semi.petNolJa.member.regist.model.dto.MemberDTO">
+		INSERT
+		  INTO MEMBER A
+		(
+		  A.MEMBER_ID
+		, A.MEMBER_PWD
+		, A.MEMBER_NAME
+		, A.MEMBER_BIRTH
+		, A.MEMBER_PHONE
+		, A.MEMBER_EMAIL
+		, A.MEMBER_POINT
+		, A.MEMBER_DROP_YN
+		, A.GRADE_NO
+		)
+		VALUES
+		(
+		  #{memberId}
+		, #{memberPwd}
+		, #{memberName}
+		, #{memberBirth}
+		, #{memberPhone}
+		, #{memberEmail}
+		, #{memberPoint}
+		, #{memberDropYn}
+		, #{gradeNo}
+		)
+	</insert>
+	
+	<insert id="registTermsAgreeLog" parameterType="com.semi.petNolJa.member.regist.model.dto.TermsAgreeLogDTO">
+		INSERT
+		  INTO TERMS_AGREE_LOG A
+		(
+		  A.TERMS_NO
+		, A.MEMBER_ID
+		, A.AGREE_YN
+		, A.AGREE_DATE
+		)
+		VALUES
+		(
+		  #{termsNo}
+		, #{memberId}
+		, #{agreeYn}
+		, SYSDATE
+		)
+	</insert>
 </mapper>

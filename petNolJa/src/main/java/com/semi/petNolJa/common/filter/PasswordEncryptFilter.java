@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.semi.petNolJa.common.wrapper.EncryptRequestWrapper;
 
-@WebFilter("/member")
+@WebFilter("/member/*")
 public class PasswordEncryptFilter implements Filter {
 
 	public void destroy() {}
@@ -26,10 +26,10 @@ public class PasswordEncryptFilter implements Filter {
 		
 		if(!"/login".equals(intent)) {
 			EncryptRequestWrapper wrapper = new EncryptRequestWrapper(hrequest);
-			
 			chain.doFilter(wrapper, response);
+		} else {
+			chain.doFilter(request, response);
 		}
-		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {}

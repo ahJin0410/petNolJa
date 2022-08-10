@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.semi.petNolJa.member.regist.model.dto.TermsAgreeLogDTO;
 
 @WebServlet("/member/regist/agree")
@@ -27,15 +29,24 @@ public class TermsOfServiceServlet extends HttpServlet {
 			TermsAgreeLogDTO agree = new TermsAgreeLogDTO();
 			if(request.getParameter(i + "") == null) {
 				agree.setTermsNo(i);
-				agree.setAgreeYn('N');
+				agree.setAgreeYn("N");
 			} else {
 				agree.setTermsNo(i);
-				agree.setAgreeYn('Y');
+				agree.setAgreeYn("Y");
 			}
 			agreeList.add(agree);
 		}
-		Gson gson = new Gson();
-		request.setAttribute("agreeList", gson.toJson(agreeList));
+		
+		JSONArray jsonArray = new JSONArray();
+		for(TermsAgreeLogDTO agree : agreeList) {
+			JSONObject json = new JSONObject();
+			json.put("termsNo", agree.getTermsNo());
+			json.put("agreeYn", agree.getAgreeYn());
+			
+			jsonArray.add(json);
+		}
+		
+		request.setAttribute("agreeList",jsonArray.toJSONString());
 		request.getRequestDispatcher("/WEB-INF/views/member/regist/registFrom.jsp").forward(request, response);
 	}
 
