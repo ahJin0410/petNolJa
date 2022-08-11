@@ -12,7 +12,7 @@
 <body>
 	<jsp:include page="../../common/memberHeader.jsp"/>
 	<div align="center">
-	    <div class="innerwrap">
+	    <div class="innerwrap" style="width: 900px;">
 	        <div align="center">
 	            <h2 class="h2korea">약관동의</h2>
 	            <p id="order"><b class="text-deco">① 약관동의</b> - ② 회원 정보 입력 - ③ 가입 완료</p>
@@ -37,12 +37,12 @@
 	               <br>
 	               <div class="checksub1">
 	               <input type="checkbox" name="allAgree1" id="allAgree1"><label for="allAgree1"  class="c1">상품안내 및 마케팅 활용을 위한 개인정보 수집·이용에 관한 동의 <b>(선택)</b></label><br>
-	                  <input type="checkbox" name="4" id="sms1"><label for="sms1"> SMS</label>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="5" id="email1"><label for="email1"> email</label>
+	                  <input type="checkbox" name="4" id="sms1" style="margin-left: 30px;"><label for="sms1"> SMS</label>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="5" id="email1"><label for="email1"> email</label>
 	               </div>
 	                  <br>
 	               <div class="checksub2">
 	                  <input type="checkbox" name="allAgree2" id="allAgree2"><label for="allAgree2"  class="c1">상품안내 및 마케팅 활용을 위한 개인정보 제3자 제공에 관한 동의 <b>(선택)</b></label><br>
-	                  <input type="checkbox" name="6" id="sms1"><label for="sms1"> SMS</label>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="7" id="email1"><label for="email1"> email</label>
+	                  <input type="checkbox" name="6" id="sms1" style="margin-left: 30px;"><label for="sms1"> SMS</label>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="7" id="email1"><label for="email1"> email</label>
 	               </div>
 	               <div class="buttonDiv" align="center" style="margin-top: 60px;">
 	                 <button type="reset" id="leftBtn" onclick="location.href='${ pageContext.request.contextPath }/index.jsp'"><b>이전</b></button>&nbsp;&nbsp;&nbsp; <button type="button" id="button"><b>다음</b></button>

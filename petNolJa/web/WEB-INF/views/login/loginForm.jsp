@@ -32,7 +32,7 @@
 		            <tr>
 		                <td width="30%"><a href="${pageContext.servletContext.contextPath}/member/regist/agree">회원가입</a></td>
 		                <td>|</td>
-		                <td width="30%"><a href="#">아이디 찾기</a></td>
+		                <td width="30%"><a href="${pageContext.servletContext.contextPath}/member/find/id">아이디 찾기</a></td>
 		                <td>|</td>
 		                <td width="30%"><a href="#">비밀번호 찾기</a></td>
 		            </tr>

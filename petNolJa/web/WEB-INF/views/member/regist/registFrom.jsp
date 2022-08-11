@@ -16,15 +16,15 @@
         <div class="innerwrap">
             <h2>회원 정보 입력</h2>
             <p id="order" style="padding-bottom: 40px;">① 약관동의 - <b class="text-deco">② 회원 정보 입력</b> - ③ 가입 완료</p>
-            <form action="${pageContext.servletContext.contextPath}/member/regist/info" method="post" onsubmit="return registCheckInfo();">
-                <p align="left" style="width: 80%;">1. 로그인 정보</p>
-                <table class="topTable" style="width: 80%; border-top: 0.1px solid black; height: 100px;">
+            <form action="${pageContext.servletContext.contextPath}/member/regist/info" method="post" onsubmit="return registCheckInfo();" >
+                <p align="left">1. 로그인 정보</p>
+                <table class="topTable" style="width:100%; border-top: 0.1px solid black; height: 100px;">
                     <tr>
                         <td style="width: 20%;"><label for="memberId">아이디 <small class="ness"> (필수)</small></label></td>
                         <td><input type="text" name="memberId" id="memberId" placeholder="사용할 아이디를 입력해주세요." required="required">&nbsp;&nbsp;&nbsp;<button type="button" class="checkBtn" id="checkId">중복확인</button></td>
                     </tr>
                 </table>
-                <table class="topTable" style="width: 80%; border-top: 0.1px solid rgba(224, 224, 224, 0.685); height: 210px;">
+                <table class="topTable" style="width:100%; border-top: 0.1px solid rgba(224, 224, 224, 0.685); height: 210px;">
                     <tr>
                         <td style="width: 20%; height: 90px;"><label for="memberPwd">비밀번호 <small class="ness"> (필수)</small></label></td>
                         <td>
@@ -40,18 +40,18 @@
                     </tr>
                      <tr><td></td></tr>
                 </table>
-                <p align="left" style="width: 80%;">2. 고객 정보</p>
-                <table class="middleTable" style="width: 80%; border-top: 0.1px solid black; border-bottom: 0.1px solid gray; height: 350px;">
+                <p align="left">2. 고객 정보</p>
+                <table class="middleTable" style="width:100%; border-top: 0.1px solid black; border-bottom: 0.1px solid gray; height: 350px;">
                     <tr>
-                        <td style="width: 20%; height: 80px;"><label for="memberName">이름</label></td>
+                        <td style="width: 20%; height: 80px;"><label for="memberName">이름 <small class="ness"> (필수)</small></label></td>
                         <td><input type="text" name="memberName" id="memberName" placeholder="이름을 입력해주세요."></td>
                     </tr>
                     <tr>
-                        <td style="height: 50px;"><label for="memberBirth">생년월일</label></td>
+                        <td style="height: 50px;"><label for="memberBirth">생년월일 <small class="ness"> (필수)</small></label></td>
                         <td><input type="date" name="memberBirth" id="memberBirth" required="required"></td>
                     </tr>
                     <tr>
-                        <td style="height: 80px;"><label for="memberPhone">핸드폰</label></td>
+                        <td style="height: 80px;"><label for="memberPhone">핸드폰 <small class="ness"> (필수)</small></label></td>
                         <td>
                             <select name="memberPhoneFront" id="memberPhoneFront" style="width: 65px; border: none; padding-left: 5px;">
                                 <option value="010">010</option>
@@ -67,7 +67,7 @@
                         <td style="height: 20px;"><input type="number" name="certificationNumber" id="certificationNumber" placeholder="인증번호를 입력해주세요." required="required">&nbsp;&nbsp;&nbsp;<button type="button" class="checkBtn" id="checkCertification" style="display: none;">확인</button></td>
                     </tr>
                     <tr>
-                        <td style="height: 80px;"><label for="memberEmail">이메일</label></td>
+                        <td style="height: 80px;"><label for="memberEmail">이메일 <small class="ness"> (필수)</small></label></td>
                         <td><input type="text" name="memberEmail" id="memberEmail" placeholder="사용할 이메일을 입력해주세요." required="required"></td>
                     </tr>
                     <tr><td></td></tr>
@@ -75,7 +75,7 @@
                 <div align="center" style="margin-top: 60px;">
                 	<input type="text" name="termsNo" id="termsNo" style="display: none;">
                 	<input type="text" name="agreeYn" id="agreeYn" style="display: none;">
-                    <button type="reset" id="leftBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/regist/agree'"><b>이전</b></button>&nbsp;&nbsp;&nbsp; <button type="submit" id="button"><b>다음</b></button>
+                    <button type="reset" id="leftBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/member/regist/agree'"><b>이전</b></button>&nbsp;&nbsp;&nbsp; <button type="submit" id="button"><b>다음</b></button>
                 </div>
             </form>
         </div>
@@ -175,8 +175,8 @@
     $("#checkCertification").click(function(){
         let userInput = $("#certificationNumber").val();
         if(userInput == checkRandomNumber){
-            $("#memberPhoneFront").attr('disabled', true);
-            $("#memberPhone").attr('disabled', true);
+            $("#memberPhoneFront").attr('readonly', true);
+            $("#memberPhone").attr('readonly', true);
             $("#certificationNumber").attr('disabled', true);
             $("#checkPhone").html('인증완료');
             $("#checkPhone").attr('disabled', true);

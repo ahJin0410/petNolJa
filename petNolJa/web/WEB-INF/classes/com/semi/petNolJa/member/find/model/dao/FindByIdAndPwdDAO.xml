@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.semi.petNolJa.member.find.model.dao.FindByIdAndPwdDAO">
+	
+	<select id="findById" parameterType="com.semi.petNolJa.member.find.model.dto.MemberDTO" resultType="string">
+		SELECT
+			   A.MEMBER_ID
+		  FROM MEMBER A
+		 WHERE A.MEMBER_NAME = #{memberName}
+		   AND A.MEMBER_BIRTH = #{memberBirth}
+		   AND A.MEMBER_PHONE = #{memberPhone}
+	</select>
+</mapper>

@@ -30,6 +30,7 @@ public class MemberRegistServlet extends HttpServlet {
 		member.setMemberName(request.getParameter("memberName"));
 		member.setMemberBirth(java.sql.Date.valueOf(request.getParameter("memberBirth")));
 		member.setMemberPhone(request.getParameter("memberPhoneFront") + request.getParameter("memberPhone"));
+		System.out.println("핸드폰ㅎㅎ" + request.getParameter("memberPhone"));
 		member.setMemberEmail(request.getParameter("memberEmail"));
 		member.setMemberPoint(1000);
 		member.setMemberDropYn("N");

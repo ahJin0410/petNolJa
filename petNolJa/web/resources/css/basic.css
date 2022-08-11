@@ -172,7 +172,7 @@ select{height:30px;}
 input{height:30px;}
 
 .innerwrap {
-	width: 90%;
+	width: 800px;
 	height: 100%;
 	margin-top: 50px;
 	position: relative;
@@ -180,9 +180,9 @@ input{height:30px;}
 }
 
 .check{
-	width: 80%;
 	height: 100%;
 	margin-bottom: 30px;
+	padding-left: 10px;
 }
 
 #header_wrap { position:relative; border-bottom:0.7px solid black; }

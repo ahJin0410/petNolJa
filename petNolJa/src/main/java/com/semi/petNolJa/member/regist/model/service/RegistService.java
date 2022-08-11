@@ -34,13 +34,11 @@ public class RegistService {
 				int regist = registDAO.registTermsAgreeLog(agreeList.get(i));
 				result -= regist;
 			}
-			
-			if(result == 0) {
-				sqlSessio.commit();
-			} else {
-				sqlSessio.rollback();
-			}
-			
+		}
+		if(result == 0) {
+			sqlSessio.commit();
+		} else {
+			sqlSessio.rollback();
 		}
 		sqlSessio.close();
 		return result;
