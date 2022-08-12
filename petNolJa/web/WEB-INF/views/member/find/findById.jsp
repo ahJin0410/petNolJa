@@ -20,7 +20,7 @@
                 아이디가 기억나지 않으세요? 회원님의 정보로 아이디를 확인하실 수 있습니다.
             </p><br><br><hr>
             <form action="${pageContext.servletContext.contextPath}/member/find/id" method="post" onsubmit="return checkInfo();">
-                <table class="middleTable" style="width:65; height: 100%;">
+                <table class="middleTable" style="width:65; height: 100%; padding-top: 50px;">
                     <tr>
                         <td style="width: 20%; height: 80px;"><label for="memberName">이름</label></td>
                         <td><input type="text" name="memberName" id="memberName" placeholder="이름을 입력해주세요." required="required"></td>
@@ -32,7 +32,7 @@
                     <tr>
                         <td style="height: 80px;"><label for="memberPhone">핸드폰</label></td>
                         <td>
-                            <input type="number" name="memberPhone" id="memberPhone" placeholder="핸드폰 번호를 입력해주세요." required="required">&nbsp;&nbsp;&nbsp;<button type="button" class="checkBtn" id="checkPhone">인증번호</button>
+                            <input type="number" name="memberPhone" id="memberPhone" placeholder="핸드폰 번호를 입력해주세요. (- 제외)" required="required">&nbsp;&nbsp;&nbsp;<button type="button" class="checkBtn" id="checkPhone">인증번호</button>
                         </td>
                     </tr>
                     <tr id="checkNumber" style="display: none;">
@@ -41,6 +41,7 @@
                     </tr>
                     <tr>
                         <td align="center" colspan="2" style="height: 80px;">
+                        	<button type="button" id="leftBtn" onclick="location.href='${ pageContext.servletContext.contextPath }/member/regist/agree'" style="display: none;"><b>회원가입</b></button>&nbsp;&nbsp;&nbsp;
                             <button type="submit" id="button"><b>아이디 찾기</b></button>
                         </td>
                     </tr>
@@ -54,6 +55,28 @@
     </div>
     <jsp:include page="../../common/memberFooter.jsp"/>
 <script>
+    if('${message}' != ''){
+    	alert('${message}');
+    	$("#leftBtn").css("display", "");
+    }
+
+    $("#memberBirth").change(function(){
+        let memberBirth = $("#memberBirth").val() + '';
+        if(memberBirth.length > 6 || memberBirth.length < 5){
+            alert('생년월일 6자리를 입력해주세요.\n(YYYYMMDD)');
+            $("#memberBirth").val('');
+        };
+    });
+    
+    $("#memberPhone").change(function(){
+        let memberPhone = $("#memberPhone").val() + '';
+        
+        if(memberPhone.length > 11 || memberPhone.length < 10){
+            alert('회원가입 시 등록한 핸드폰 번호를 입력해주세요.\n(01012341234)');
+            $("#memberPhone").val('');
+        }
+    });
+
     $("#checkPhone").click(function(){
         let memberPhone = $("#memberPhone").val();
         if(memberPhone == '' || memberPhone == null){

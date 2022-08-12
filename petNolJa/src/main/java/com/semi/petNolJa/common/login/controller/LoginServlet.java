@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 			
 			response.sendRedirect(request.getContextPath());
 		} else {
-			request.setAttribute("message", "로그인이 필요한 서비스 입니다.");
+			request.setAttribute("message", "입력하신 아이디 또는 비밀번호가 일치하지 않습니다.");
 			request.getRequestDispatcher("/WEB-INF/views/login/loginForm.jsp").forward(request, response);
 		}
 		
