@@ -8,6 +8,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- CSS -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/basic.css">
+<!-- icon -->
+<script src="https://kit.fontawesome.com/9d883380b6.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>펫놀자</title>
 

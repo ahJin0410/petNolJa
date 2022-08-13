@@ -81,6 +81,7 @@
 			 , A.GRADE_NO
 		  FROM MEMBER A
 		 WHERE A.MEMBER_ID = #{id}
+		   AND A.MEMBER_DROP_YN = 'N'
 	</select>
 	
 	<insert id="registMemLoginLog" parameterType="hashmap">

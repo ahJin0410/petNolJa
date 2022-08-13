@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.semi.petNolJa.member.find.model.dao.FindByIdAndPwdDAO">
+	<resultMap type="com.semi.petNolJa.member.find.model.dto.MemberDTO" id="memberResultMap">
+		<id property="memberId" column="MEMBER_ID" />
+		<result property="memberPwd" column="MEMBER_PWD" />
+		<result property="memberName" column="MEMBER_NAME" />
+		<result property="memberBirth" column="MEMBER_BIRTH" />
+		<result property="memberPhone" column="MEMBER_PHONE" />
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberPoint" column="MEMBER_POINT" />
+		<result property="memberLeavedate" column="MEMBER_LEAVEDATE" />
+		<result property="memberDropYn" column="MEMBER_DROP_YN" />
+		<result property="gradeNo" column="GRADE_NO" />
+	</resultMap>
 	
 	<select id="findById" parameterType="com.semi.petNolJa.member.find.model.dto.MemberDTO" resultType="string">
 		SELECT
@@ -9,5 +21,38 @@
 		 WHERE A.MEMBER_NAME = #{memberName}
 		   AND A.MEMBER_BIRTH = #{memberBirth}
 		   AND A.MEMBER_PHONE = #{memberPhone}
+		   AND A.MEMBER_DROP_YN = 'N'
 	</select>
+	
+	<select id="findByPwd" parameterType="com.semi.petNolJa.member.find.model.dto.MemberDTO" resultMap="memberResultMap">
+		SELECT
+			   A.MEMBER_ID
+			 , A.MEMBER_EMAIL
+			 , A.MEMBER_PHONE
+		  FROM MEMBER A
+		 WHERE A.MEMBER_ID = #{memberId}
+		   AND A.MEMBER_BIRTH = #{memberBirth}
+		   AND A.MEMBER_PHONE = #{memberPhone}
+		   AND A.MEMBER_DROP_YN = 'N'
+	</select>
+	
+	<update id="modifyPwdByMemberId" parameterType="hashmap">
+		UPDATE
+			   MEMBER A
+		   SET A.MEMBER_PWD = #{memberPwd}
+		 WHERE A.MEMBER_ID = #{memberId}
+		   
+	</update>
+	
+	<select id="selectMemberByMemberId" parameterType="string" resultMap="memberResultMap">
+		SELECT
+			   A.MEMBER_ID
+			 , A.MEMBER_NAME
+			 , A.MEMBER_EMAIL
+			 , A.MEMBER_PHONE
+		  FROM MEMBER A
+		 WHERE A.MEMBER_ID = #{memberId}
+	</select>
+	
+	
 </mapper>

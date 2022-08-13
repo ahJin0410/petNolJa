@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>펫놀자</title>
 </head>
@@ -34,12 +36,17 @@
 		                <td>|</td>
 		                <td width="30%"><a href="${pageContext.servletContext.contextPath}/member/find/id">아이디 찾기</a></td>
 		                <td>|</td>
-		                <td width="30%"><a href="#">비밀번호 찾기</a></td>
+		                <td width="30%"><a href="${pageContext.servletContext.contextPath}/member/find/pwd">비밀번호 찾기</a></td>
 		            </tr>
 		        </table>
 		    </div>
 		</div>
 	</div>
 	<jsp:include page="../common/memberFooter.jsp"/>
+<script>
+	if('${message}' != ''){
+		alert('${message}');
+	}
+</script>
 </body>
 </html>

@@ -84,9 +84,6 @@
 	<jsp:include page="../../common/memberFooter.jsp"/>
 
 <script>
-	if('${message}' != ''){
-		alert('${message}');
-	}
 	
 	/* 유효성 검사 */
     $("#memberId").change(function(){

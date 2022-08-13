@@ -78,7 +78,7 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
 	position: relative; 
 	left:10px; 
 }
-#agree1,#agree2,#agree3, #allAgree1, #allAgree2, #sms1,#email1, #email2{
+#agree1,#agree2,#agree3, #allAgree1, #allAgree2, #sms1,#email1, #email2, .c2{
 	position:relative; 
 	top:11.5px;
 }

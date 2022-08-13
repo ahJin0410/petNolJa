@@ -6,7 +6,7 @@ import java.sql.Date;
 public class MemberDTO implements Serializable {
 	private static final long serialVersionUID = -6353336911493823594L;
 	
-	private String memeberId;				// 회원 아이디
+	private String memberId;				// 회원 아이디
 	private String memberPwd;				// 회원 비밀번호
 	private String memberName;				// 회원 이름
 	private java.sql.Date memberBirth;		// 회원 생년월일
@@ -22,7 +22,7 @@ public class MemberDTO implements Serializable {
 
 	public MemberDTO(String memeberId, String memberPwd, String memberName, Date memberBirth, String memberPhone,
 			String memberEmail, int memberPoint, Date memberLeavedate, char memberDropYn, int gradeNo) {
-		this.memeberId = memeberId;
+		this.memberId = memeberId;
 		this.memberPwd = memberPwd;
 		this.memberName = memberName;
 		this.memberBirth = memberBirth;
@@ -35,11 +35,11 @@ public class MemberDTO implements Serializable {
 	}
 
 	public String getMemeberId() {
-		return memeberId;
+		return memberId;
 	}
 
 	public void setMemeberId(String memeberId) {
-		this.memeberId = memeberId;
+		this.memberId = memeberId;
 	}
 
 	public String getMemberPwd() {
@@ -120,7 +120,7 @@ public class MemberDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MemberDTO [memeberId=" + memeberId + ", memberPwd=" + memberPwd + ", memberName=" + memberName
+		return "MemberDTO [memeberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName=" + memberName
 				+ ", memberBirth=" + memberBirth + ", memberPhone=" + memberPhone + ", memberEmail=" + memberEmail
 				+ ", memberPoint=" + memberPoint + ", memberLeavedate=" + memberLeavedate + ", memberDropYn="
 				+ memberDropYn + ", gradeNo=" + gradeNo + "]";
