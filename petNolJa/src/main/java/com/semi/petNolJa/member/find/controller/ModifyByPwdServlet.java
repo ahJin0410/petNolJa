@@ -3,21 +3,26 @@ package com.semi.petNolJa.member.find.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
 import com.google.gson.Gson;
 import com.semi.petNolJa.member.find.model.dto.MemberDTO;
 import com.semi.petNolJa.member.find.model.service.FindByIdAndPwdService;
 
 import net.nurigo.java_sdk.api.Message;
-import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @WebServlet("/member/modify/pwd")
 public class ModifyByPwdServlet extends HttpServlet {
@@ -42,6 +47,10 @@ public class ModifyByPwdServlet extends HttpServlet {
 		MemberDTO member = new FindByIdAndPwdService().modifyPwdByMemberId(memberId, modifyPwd);
 		HashMap<String, String> memberInfo = new HashMap<>();
 		String memberPhone = member.getMemberPhone();
+		memberInfo.put("memberName", member.getMemberName().replace(member.getMemberName().substring(1, 2), "*"));
+		memberInfo.put("memberPhone", memberPhone);
+		memberInfo.put("selectMethod", selectMethod);
+		memberInfo.put("modifyPwd", modifyPwd);
 		memberPhone = memberPhone.substring(0, 3) + memberPhone.substring(3, 8).replaceAll("[0-9]", "*") + memberPhone.substring(8);
 		if("memberPhone".equals(selectMethod)) {
 			System.out.println(selectMethod + "안오는지?");
@@ -56,11 +65,6 @@ public class ModifyByPwdServlet extends HttpServlet {
 			params.put("text", "[PetNolJa] 회원님의 비밀번호는 " + modifyPwd + " 입니다.");
 			params.put("app_version", "test app 1.2");
 			
-			memberInfo.put("memberName", member.getMemberName().replace(member.getMemberName().substring(1, 2), "*"));
-			memberInfo.put("memberPhone", memberPhone);
-			memberInfo.put("selectMethod", selectMethod);
-			memberInfo.put("modifyPwd", modifyPwd);
-			
 //			try {
 //				JSONObject sendObj = (JSONObject) sms.send(params);
 //				System.out.println(sendObj);
@@ -73,6 +77,39 @@ public class ModifyByPwdServlet extends HttpServlet {
 //			}
 		} else {
 			/* 이메일로 비밀번호 찾기 만들기~! */
+			String user = "hyejin_0410@naver.com";
+			String password = "test";
+			
+			Properties prop = new Properties();
+			prop.put("mail.smtp.user", user);
+			prop.put("mail.smtp.host", "smtp.naver.com");
+			prop.put("mail.smtp.port", 587);
+			prop.put("mail.smtp.auth", "true");
+			
+			Session session = Session.getDefaultInstance(prop, new Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(user, password);
+				}
+			});
+			
+			try {
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(user));
+				message.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(member.getMemberEmail()));
+				
+				message.setSubject("[PetNolJa] 임시 비밀번호를 알려드립니다.");
+				message.setText("회원님의 임시 비밀번호를 안내해 드립니다. \n [ " + modifyPwd + "]");
+				
+				Transport.send(message);
+				System.out.println("메일 전송 확인");
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+			
+			PrintWriter out = response.getWriter();
+			out.print(new Gson().toJson(memberInfo));
+			out.flush();
+			out.close();
 		}
 		
 	}
