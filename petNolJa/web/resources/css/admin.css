@@ -1,0 +1,138 @@
+@charset "UTF-8";
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&display=swap');
+
+/*초기화*/
+* { margin:0; padding:0; }
+li { list-style:none; }
+a { text-decoration:none; color:inherit;}
+img { border:0; vertical-align:middle; }
+html{height: 100%; margin: 0; padding: 0;}
+body {background-color: #f1efec; font-family:'Nanumsquare', "맑은 고딕","돋움",sans-serif; color:#333; font-size:15px; margin: auto; min-height: 98%; position: relative;}
+.wrap{width: 100%; }
+aside{float: left; width: 20%;}
+section>section{float: left; width: 60%;}
+aside{float: left; width: 20%;}
+
+/**
+* text 태그 관련
+*/
+.text-deco {
+	color: rgb(152, 126, 88);
+}
+#order{
+	font-size: 14px; 
+	padding-top:10px;
+}
+#script{
+	font-size: 15px; 
+	padding-top:10px;
+	padding-bottom:0;
+}
+label{
+	font-size: 16px; 
+	height: 20px;
+}
+#right{
+	font-size: 20px;
+}
+#choice{
+	font-size: 24px;
+	font-weight: bold;
+}
+h1{font-size:40px; font-family:'Gilda Display', serif;} 
+h2 {font-size: 35px; font-family:'Gilda Display', serif;}
+h3 {font-size:30px; text-align:center; font-weight:normal;}
+h4 {font-size: 20px; }
+p {font-size: 16px;}
+#message{background-color:#ebe8e8; color: rgb(101, 101, 101); height: 120px; text-align: center; padding-top: 50px;}
+   
+/**
+* input 태그 관련
+*/
+input[type="checkbox"]{
+	zoom: 1.5; cursor: pointer;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="text"], input[type="number"], input[type="password"], input[type="date"]{
+    width: 270px;
+    padding-left: 6px;
+    border: none;
+}
+
+/**
+* button 태그 관련
+*/
+.button{
+	display:block;
+	position:relative;
+	display:block;
+	width:320px; 
+	margin:0 auto; 
+	padding-top:30px; 
+	padding-bottom:30px;
+	font-family:'Nanumsquare'
+}
+
+#leftBtn{
+	background-color: rgba(233, 230, 226, 1);
+	margin: 0 auto; 
+    width:150px;
+    height:30px;
+    border:none;
+    color:#73645D; 
+    font-size:16px;
+    cursor:pointer;
+    font-family:'Nanumsquare'    
+}
+
+#btn1:hover,#btn2:hover {
+	border:0.7px solid  #73645D; 
+	background-color:#73645d; 
+	color:rgba(233, 230, 226, 1);
+	width:100px; 
+	height:30px;
+}
+
+#button{ 
+	background-color: #73645d; 
+        margin: 0 auto; 
+        width:150px;
+        height:30px;
+        border:none;
+        color:#fff;
+        font-size:16px;
+        cursor:pointer;
+        font-family:'Nanumsquare'      
+        }
+
+select{height:30px;}
+input{height:30px;}
+
+.innerwrap {
+	width: 800px;
+	height: 100%;
+	margin-top: 50px;
+	position: relative;
+	padding-bottom: 60px;
+}
+
+.check{
+	height: 100%;
+	margin-bottom: 30px;
+	padding-left: 10px;
+}
+
+header { width:100%; margin:auto;  }
+h1 { text-align:center;font-family: 'Gilda Display', serif;}
+
+/*푸터*/
+#footer_wrap {position : absolute; bottom:0; height: 60px; padding:20p; width: 100%;}
+footer {padding-top: 5px; width:90%; height: 100%; margin:auto; overflow:hidden; border-top: 0.7px solid black;}

@@ -29,7 +29,7 @@ public class FindByPwdServlet extends HttpServlet {
 		
 		memberPhone = memberPhone.substring(0, 3) + "-" +  memberPhone.substring(3, 7).replaceAll("[0-9]", "*") + "-" +  memberPhone.substring(7);
 		String memberEmail = member.getMemberEmail();
-		memberEmail = member.getMemberId().substring(0, member.getMemberId().length() - 3) + "***" + memberEmail.substring(memberEmail.indexOf("@"));
+		memberEmail = memberEmail.substring(0, 3) + memberEmail.substring(3, memberEmail.indexOf("@")).replaceAll("[a-zA-Z0-9-_.]", "*") + memberEmail.substring(memberEmail.indexOf("@"));
 		
 		if(member.getMemberEmail() != null) {
 			request.setAttribute("memberId", member.getMemberId());

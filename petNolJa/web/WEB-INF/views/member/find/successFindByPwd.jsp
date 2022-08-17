@@ -39,6 +39,10 @@
     if('${selectMethod}' == 'memberPhone'){
         $("#point").html('${memberPhone}');
     }
+    
+    if('${selectMethod}' == 'memberEmail'){
+    	$("#point").html('${memberEmail}');
+    }
 </script>
 </body>
 </html>

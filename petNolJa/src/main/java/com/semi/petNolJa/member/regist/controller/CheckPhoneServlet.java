@@ -38,7 +38,7 @@ public class CheckPhoneServlet extends HttpServlet {
 		params.put("to", request.getParameter("memberPhone"));
 		params.put("from", "010-4212-3846");
 		params.put("type", "SMS");
-		params.put("text", "[PetNolJa] 인증번호: " + randomNumber + "\n인증번호를 입력해 주세요.");
+		params.put("text", "[PetNolJa]\n인증번호: " + randomNumber + "\n인증번호를 입력해 주세요.");
 		params.put("app_version", "test app 1.2");
 		
 //		try {

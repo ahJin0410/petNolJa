@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("loginEmp", loginEmp);
 			session.setAttribute("role", "admin");
 			
-			response.sendRedirect("../admin/main");
+			response.sendRedirect(request.getContextPath() + "/admin/main");
 		} else if(loginMember != null) {
 			HttpSession session = request.getSession();
 			session.setMaxInactiveInterval(6000);

@@ -66,7 +66,7 @@
                 },
                 success: function(data){
                     console.log(data);
-                    location.href= '${pageContext.servletContext.contextPath}/member/modify/pwd?memberName=' + data.memberName + '&selectMethod=' + data.selectMethod + '&memberPhone=' + data.memberPhone;
+                    location.href= '${pageContext.servletContext.contextPath}/member/modify/pwd?memberName=' + data.memberName + '&selectMethod=' + data.selectMethod + '&memberPhone=' + data.memberPhone + '&memberEmail=' + data.memberEmail;
                 },
                 error: function(error){
                     console.log(error);

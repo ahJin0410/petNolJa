@@ -7,6 +7,9 @@
 <title>관리자 페이지</title>
 </head>
 <body>
-	나는 관리자메인ㅎㅎ
+	<jsp:include page="../common/adminHeader.jsp"/>
+	
+	
+	<jsp:include page="../common/adminFooter.jsp"/>
 </body>
 </html>

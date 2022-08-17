@@ -3,44 +3,18 @@ package com.semi.petNolJa.member.find.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.security.InvalidKeyException;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
-import javax.activation.CommandMap;
-import javax.activation.MailcapCommandMap;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import javax.mail.Authenticator;
-import javax.mail.Message.RecipientType;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
 import com.nbp.ncp.nes.ApiClient;
@@ -59,6 +33,7 @@ import com.semi.petNolJa.member.find.model.dto.MemberDTO;
 import com.semi.petNolJa.member.find.model.service.FindByIdAndPwdService;
 
 import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @WebServlet("/member/modify/pwd")
 public class ModifyByPwdServlet extends HttpServlet {
@@ -68,8 +43,7 @@ public class ModifyByPwdServlet extends HttpServlet {
 		request.setAttribute("memberName", request.getParameter("memberName"));
 		request.setAttribute("selectMethod", request.getParameter("selectMethod"));
 		request.setAttribute("memberPhone", request.getParameter("memberPhone"));
-		System.out.println(request.getParameter("selectMethod"));
-		System.out.println(request.getParameter("memberPhone"));
+		request.setAttribute("memberEmail", request.getParameter("memberEmail"));
 		request.getRequestDispatcher("/WEB-INF/views/member/find/successFindByPwd.jsp").forward(request, response);
 	}
 
@@ -82,12 +56,10 @@ public class ModifyByPwdServlet extends HttpServlet {
 		
 		MemberDTO member = new FindByIdAndPwdService().modifyPwdByMemberId(memberId, modifyPwd);
 		HashMap<String, String> memberInfo = new HashMap<>();
-		String memberPhone = member.getMemberPhone();
 		memberInfo.put("memberName", member.getMemberName().replace(member.getMemberName().substring(1, 2), "*"));
-		memberInfo.put("memberPhone", memberPhone);
+		memberInfo.put("memberPhone", member.getMemberPhone().substring(0, 3) + member.getMemberPhone().substring(3, 8).replaceAll("[0-9]", "*") + member.getMemberPhone().substring(8));
+		memberInfo.put("memberEmail", member.getMemberEmail().substring(0, 3) + member.getMemberEmail().substring(3, member.getMemberEmail().indexOf("@")).replaceAll("[a-zA-Z0-9-_.]", "*") + member.getMemberEmail().substring(member.getMemberEmail().indexOf("@")));
 		memberInfo.put("selectMethod", selectMethod);
-		memberInfo.put("modifyPwd", modifyPwd);
-		memberPhone = memberPhone.substring(0, 3) + memberPhone.substring(3, 8).replaceAll("[0-9]", "*") + memberPhone.substring(8);
 		if("memberPhone".equals(selectMethod)) {
 			System.out.println(selectMethod + "안오는지?");
 			String api_key = "NCSR6UODKPGS5SUG";
@@ -104,58 +76,54 @@ public class ModifyByPwdServlet extends HttpServlet {
 //			try {
 //				JSONObject sendObj = (JSONObject) sms.send(params);
 //				System.out.println(sendObj);
-				PrintWriter out = response.getWriter();
-				out.print(new Gson().toJson(memberInfo));
-				out.flush();
-				out.close();
 //			} catch (CoolsmsException e) {
 //				e.printStackTrace();
 //			}
 		} else {
 			
-			/* 메일 보내기는 조금 더 공부해보고 진행하기,,, */
-			ApiClient apiClient = new ApiClient.ApiClientBuilder()
-									  .addMarshaller(JsonMarshaller.getInstance())
-									  .addMarshaller(XmlMarshaller.getInstance())
-									  .addMarshaller(FormMarshaller.getInstance())
-									  .setCredentials(new PropertiesFileCredentialsProvider("C:\\1_NewPetNolJa_20220806ver\\petNolJa\\resources\\lib\\credentials.properties").getCredentials())
-									  .setLogging(true)
-									  .build();
-			V1Api apiInstance = new V1Api(apiClient);
-			
-			List<EmailSendRequestRecipients> esrrList = new ArrayList<EmailSendRequestRecipients>();
-			EmailSendRequestRecipients esrr = new EmailSendRequestRecipients();
-			esrr.setAddress(member.getMemberEmail());
-			esrr.setName(member.getMemberName());
-			esrr.setType("R");
-			esrrList.add(esrr);
-			
-			EmailSendRequest requestBody = new EmailSendRequest();
-			requestBody.setBody(member.getMemberName() + "님의 임시 비밀번호를 안내해 드립니다.\n <h1> [" + modifyPwd + "] </h1>");
-			requestBody.setRecipients(esrrList);
-			requestBody.setSenderAddress("hyejin_0410@naver.com");
-			requestBody.setSenderName("펫놀자[PetNolJa]");
-			requestBody.setTitle("펫놀자 회원님의 임시 비밀번호를 안내해 드립니다.");
-			requestBody.setConfirmAndSend(false);
-			
-			String X_NCP_LANG = "ko-KR";
-			System.out.println(requestBody);
-			
-			try {
-				ApiResponse<EmailSendResponse> result = apiInstance.mailsPost(requestBody, X_NCP_LANG);
-			} catch (ApiException e) {
-				int statusCode = e.getHttpStatusCode();
-				Map<String, List<String>> responseHeaders = e.getHttpHeaders();
-				InputStream byteSteam = e.getByteStream();
-				e.printStackTrace();
-			} catch (SdkException e) {
-				e.printStackTrace();
-			}
-			PrintWriter out = response.getWriter();
-			out.print(new Gson().toJson(memberInfo));
-			out.flush();
-			out.close();
+//			ApiClient apiClient = new ApiClient.ApiClientBuilder()
+//									  .addMarshaller(JsonMarshaller.getInstance())
+//									  .addMarshaller(XmlMarshaller.getInstance())
+//									  .addMarshaller(FormMarshaller.getInstance())
+//									  .setCredentials(new PropertiesFileCredentialsProvider("C:\\1_NewPetNolJa_20220806ver\\petNolJa\\resources\\lib\\credentials.properties").getCredentials())
+//									  .setLogging(true)
+//									  .build();
+//			V1Api apiInstance = new V1Api(apiClient);
+//			
+//			List<EmailSendRequestRecipients> esrrList = new ArrayList<EmailSendRequestRecipients>();
+//			EmailSendRequestRecipients esrr = new EmailSendRequestRecipients();
+//			esrr.setAddress(member.getMemberEmail());
+//			esrr.setName(member.getMemberName());
+//			esrr.setType("R");
+//			esrrList.add(esrr);
+//			
+//			EmailSendRequest requestBody = new EmailSendRequest();
+//			requestBody.setBody(member.getMemberName() + "님의 임시 비밀번호를 안내해 드립니다.\n <h1> [" + modifyPwd + "] </h1>");
+//			requestBody.setRecipients(esrrList);
+////			requestBody.setTemplateSid(null);
+//			requestBody.setSenderAddress("hyejin_0410@naver.com");
+//			requestBody.setSenderName("펫놀자[PetNolJa]");
+//			requestBody.setTitle("펫놀자 회원님의 임시 비밀번호를 안내해 드립니다.");
+//			requestBody.setConfirmAndSend(false);
+//			
+//			String X_NCP_LANG = "ko-KR";
+//			System.out.println(requestBody);
+//			
+//			try {
+//				ApiResponse<EmailSendResponse> result = apiInstance.mailsPost(requestBody, X_NCP_LANG);
+//			} catch (ApiException e) {
+//				int statusCode = e.getHttpStatusCode();
+//				Map<String, List<String>> responseHeaders = e.getHttpHeaders();
+//				InputStream byteSteam = e.getByteStream();
+//				e.printStackTrace();
+//			} catch (SdkException e) {
+//				e.printStackTrace();
+//			}
 		}
+		PrintWriter out = response.getWriter();
+		out.print(new Gson().toJson(memberInfo));
+		out.flush();
+		out.close();
 		
 	}
 	

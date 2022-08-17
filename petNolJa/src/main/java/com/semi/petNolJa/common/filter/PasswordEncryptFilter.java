@@ -17,7 +17,7 @@ public class PasswordEncryptFilter implements Filter {
 
 	public void destroy() {}
 
-	/* 로그인을 제외 한 경우만 비밀번호 암호화 처리 → 회원가입 */
+	/* 로그인을 제외 한 경우만 비밀번호 암호화 처리 → 회원가입, 비밀번호 변경 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest hrequest = (HttpServletRequest) request;
 		String uri = hrequest.getRequestURI();

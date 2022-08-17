@@ -14,17 +14,17 @@
 <title>펫놀자</title>
 
 <style>
-	div::-webkit-scrollbar {
-    width: 8px;  /* 스크롤바의 너비 */
+	body::-webkit-scrollbar {
+    	width: 8px;  /* 스크롤바의 너비 */
 	}
 	
-	div::-webkit-scrollbar-thumb {
+	body::-webkit-scrollbar-thumb {
 	    height: 30%; /* 스크롤바의 길이 */
 	    background: #73645D;  /* 스크롤바의 색상 */
 	    border-radius: 10px;
 	}
 	
-	div::-webkit-scrollbar-track {
+	body::-webkit-scrollbar-track {
 	    background: rgb(243, 242, 242);  /*스크롤바 뒷 배경 색상*/
 	}
 </style>
