@@ -9,7 +9,6 @@
 <body>
 	<jsp:include page="../common/adminHeader.jsp"/>
 	
-	
 	<jsp:include page="../common/adminFooter.jsp"/>
 </body>
 </html>
