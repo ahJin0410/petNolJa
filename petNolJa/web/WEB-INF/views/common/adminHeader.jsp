@@ -8,62 +8,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- CSS -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/admin.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/contents.css">
 <!-- icon -->
 <script src="https://kit.fontawesome.com/9d883380b6.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
-<style>
-    body::-webkit-scrollbar {
-    	width: 8px;  /* 스크롤바의 너비 */
-	}
-	
-	body::-webkit-scrollbar-thumb {
-	    height: 30%; /* 스크롤바의 길이 */
-	    background: #000000;  /* 스크롤바의 색상 */
-	    border-radius: 10px;
-	}
-	
-	body::-webkit-scrollbar-track {
-	    background: rgb(243, 242, 242);  /*스크롤바 뒷 배경 색상*/
-	}
-	.info{
-		background: black;
-		color: white;
-		padding-top: 20px;
-	}
-	
-	/*서브메뉴*/
-	.m01_b{font-weight: 600; font-size: medium; font-family: 'IBM Plex Sans KR', sans-serif}
-	 .m01{margin:10px 0;}
-	 .m01 > a {line-height: 45px;}
-	 .sub_wrap {  /* position:absolute; */ width: 100%; left:0; right:0; height:265px; 
-	 padding:0 0 30px 0;color:#f1efec;   }
-   
-    .sub_wrap > ul > li { margin: 0 auto; width:100%; margin-top:24px; }
-    .sub_wrap > ul > li > a { font-size:15px; line-height:33px; color:  #0b1c2c; }
-
-    /*서브들 전부*/   
-    .sub_wrap .floatX { clear:both; }  
-    .sub_wrap .subUp { margin-left:-240px; margin-top:130px; }
-
-    .subhas a { font-size:13px; line-height:30px; color:  #0b1c2c; }
-
-    /*서브메뉴-2*/
-    .sub_wrap {display: none; position:relative; top:0px; margin: 0 auto; width: 100%; height:auto; padding:0 0 0 0;  }
-    .sub_wrap > ul { position:relative; width:300px; }
-    .sub_wrap > ul > li { float:none; width:auto; margin-top:0;  border-top:1px solid #ccc;}
-    .sub_wrap > ul > li > a { font-size:14px; line-height:37px; }
-    .sub_wrap > ul > li > a:hover { color: #959595;}
-
-	.line { position:absolute; top: 102px; bottom:0%; left:300px; width:0.7px; height:90%; background:black; }
-	
-    .sub_wrap > ul > li.subhas { padding-left:0;  }
-
-    .subhas ul { display:none; background:#ebe9e9; padding-left:20px;  border-top:1px solid #ccc; border-bottom:1px solid #ccc; }
-    .subhas > a {  position:relative; display:block;}
-
-    .subhas > ul > li > a { font-size:13px; line-height:26px; }
-</style>
 </head>
 <body>
 	<header>
@@ -75,8 +24,8 @@
 	     </div>
 	    </div>
 	</header>
-	<nav>
-		<section id="navSection" style="width: 300px;">
+	<nav style=" position:absolute; width: 300px; bottom:0%; float: left; height: 90%;">
+		<section id="navSection" >
 			<aside id="pix-nav" >
 				<div class="info">
 					<div id="admin-member" align="center">

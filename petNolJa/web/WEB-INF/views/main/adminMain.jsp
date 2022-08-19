@@ -8,7 +8,11 @@
 </head>
 <body>
 	<jsp:include page="../common/adminHeader.jsp"/>
-	
+	<div class="wrap">
+		<div class="innerwrap">
+			<button type="button" onclick="location.href='${pageContext.servletContext.contextPath}/regist/post/room'"> 객실 등록 </button>
+		</div>
+	</div>
 	<jsp:include page="../common/adminFooter.jsp"/>
 </body>
 </html>
