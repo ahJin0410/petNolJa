@@ -33,6 +33,7 @@
 	}
 	
 	/*서브메뉴*/
+	.m01_b{font-weight: 600; font-size: medium; font-family: 'IBM Plex Sans KR', sans-serif}
 	 .m01{margin:10px 0;}
 	 .m01 > a {line-height: 45px;}
 	 .sub_wrap {  /* position:absolute; */ width: 100%; left:0; right:0; height:265px; 
@@ -58,8 +59,8 @@
 	
     .sub_wrap > ul > li.subhas { padding-left:0;  }
 
-    .subhas ul { display:none; background:#ebe9e9; padding-left:20px;  border-top:1px solid #ccc;}
-    .subhas > a {  position:relative; display:block; padding-left:20px;}
+    .subhas ul { display:none; background:#ebe9e9; padding-left:20px;  border-top:1px solid #ccc; border-bottom:1px solid #ccc; }
+    .subhas > a {  position:relative; display:block;}
 
     .subhas > ul > li > a { font-size:13px; line-height:26px; }
 </style>
@@ -124,8 +125,8 @@
 							<a class="m01_b" href="#">게시물 관리</a>
 							<div class="sub_wrap">
 								<ul>
-									<li class="subhas"><a href="#">객실 게시물 관리</a></li>
-									<li class="subhas"><a href="#">펫시터 게시물 관리</a></li>
+									<li class="subhas"><a href="${pageContext.servletContext.contextPath}/select/post/room/list">객실 게시물 관리</a></li>
+									<li class="subhas"><a href="${pageContext.servletContext.contextPath}/select/post/petsitter/list">펫시터 게시물 관리</a></li>
 								</ul>
 							</div>
 						</li>
@@ -154,5 +155,21 @@
 		</section>
 	</nav>
 	<div class="line"></div>
+<script>
+	/* 관리자 메인 메뉴 */
+	$('.m01_b').click(function(){
+		$('.sub_wrap').slideUp();
+		
+		if($(this).hasClass('active') == false){       
+		    $(this).siblings('.sub_wrap').slideDown(500);
+		    $(this).addClass('active'); 
+		    $(this).parent('li').addClass('on');  
+		} else  {
+		    $(this).siblings('.sub_wrap').slideUp(200);
+		    $(this).removeClass('active'); 
+		    $(this).parent('li').removeClass('on'); 
+		}
+	});
+</script>
 </body>
 </html>

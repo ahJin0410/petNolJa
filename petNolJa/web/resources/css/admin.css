@@ -2,7 +2,7 @@
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 @import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gilda+Display&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
 /*초기화*/
 * { margin:0; padding:0; }
 li { list-style:none; }
